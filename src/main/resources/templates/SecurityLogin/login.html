@@ -6,5 +6,25 @@
 </head>
 <body>
     <h3>로그인 페이지</h3>
+    <form action="/" name="loginForm" method="post">
+<input type="text" name="username">
+<input type="password" name="password">
+<button type="button" id="login">로그인</button>
+
+    </form>
+    <script>
+        const login=document.getElementById("login");
+        login.onclick=function(){
+            document.loginForm.action="loginForm";
+            document.loginForm.submit();
+        }
+
+
+
+    </script>
 </body>
+
+
+
+
 </html>

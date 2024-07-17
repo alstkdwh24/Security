@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.security.SecurityService.SecurityMapper">
+    <select id="Login" resultType="UserVO">
+        select * from membermember where username=#{username}
+    </select>
+
+    <insert id="join" parameterType="UserVO">
+        insert into membermember (username, password) values(#{username} , #{password});
+
+    </insert>
+</mapper>
+

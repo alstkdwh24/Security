@@ -1,13 +1,26 @@
 package com.example.security.controller;
 
+import com.example.security.SecurityService.SecurityService;
+import com.example.security.command.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/SecurityLogin")
-public class ControllerSecurity {
+public class ControllerSecurity  {
+
+    @Autowired
+    @Qualifier("SecurityService")
+    private SecurityService securityService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/join")
     public String join(){
@@ -40,4 +53,28 @@ public class ControllerSecurity {
         return "REST 방식의 어드민페이지";
     }
 
+    //회원가입가능
+    @PostMapping("/joinForms")
+    public String joinForms(UserVO vo){
+        int result=securityService.join(vo);
+
+        return "redirect:/SecurityLogin/join";
+    }
+    //로그인 기능
+    @PostMapping("/loginForm")
+    public String joinForm(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+
+//        bCryptPasswordEncoder.encode(vo.getPassword());
+//        return "redirect:/SecurityLogin/main";
+// return null;
+        UserVO UserVO = securityService.Login(username, password);
+        System.out.println("UserVO  " + UserVO );
+        if (UserVO != null) { // 일반 사용자 로그인 성공
+            // 일반 사용자 권한으로 처리할 로직 추가
+            return "redirect:/SecurityLogin/main";
+        } else { // 로그인 실패
+            model.addAttribute("message", "로그인에 실패했습니다.");
+            return "redirect:/SecurityLogin/login"; // 로그인 폼 페이지로 이동
+        }
+    }
 }
