@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <h3>all 페이지</h3>
+<!--    인증되었다면  true 아니면 false를 반롼-->
+<div sec:authorize="isAuthenticated()">
+    [[${#authentication.principal}]]
+    [[${#authentication.principal.username}]]
+    [[${#authentication.principal.getrole}]]
+<!--    유저안에 들어있는 username-->
+
+</div>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     }
     @Override
-    public UserVO Login(String username,String password) {
-        return securityMapper.Login(username,password);
+    public UserVO Login(String username) {
+        return securityMapper.Login(username);
     }
 }

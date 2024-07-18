@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SecurityMapper {
 
-    public UserVO Login(String username, String password);
+    UserVO Logins(String username);
+
+    UserVO Login(String username);
 
     public int join(UserVO vo);
 

@@ -16,6 +16,10 @@ public class SecurityConfig {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
+
+
+
+
     //비밀번호 암호화(시큐러티가 제공해줌)
     @Bean
     public BCryptPasswordEncoder encoder(){
@@ -75,9 +79,10 @@ public class SecurityConfig {
         //시큐러티 기반의 플로그인을 사용한다.
         http.formLogin()
                 .loginPage("/SecurityLogin/loginlogin") // 커스터마이징된 로그인 페이지 경로
-                .loginProcessingUrl("/SecurityLogin/loginForms") ;// 로그인 처리 URL
+                .loginProcessingUrl("/SecurityLogin/loginForms") // 로그인 처리 URL
 //                .usernameParameter("yyy") // 사용자명 파라미터 이름 설정
 //                .passwordParameter("xxx"); //패스워드 파라미터 변경 시에 씋수있고
+        .defaultSuccessUrl("/SecurityLogin/all");
     return http.build();
     }
 

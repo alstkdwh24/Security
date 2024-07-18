@@ -6,6 +6,10 @@
     <select id="Login" resultType="UserVO">
         select * from membermember where username=#{username}
     </select>
+    <select id="Logins" resultType="UserVO">
+        select * from membermember where username=#{username}
+    </select>
+
 
     <insert id="join" parameterType="UserVO">
         insert into membermember (username, password, role) values(#{username} , #{password} ,#{role});

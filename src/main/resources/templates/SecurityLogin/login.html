@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,13 +12,15 @@
 <button type="button" id="login">로그인</button>
 
     </form>
+
+    <div th:if="${msg != null}" th:text="${msg}" style="color: red;">[[${msg}]]</div>
+
     <script>
         const login=document.getElementById("login");
         login.onclick=function(){
             document.loginForm.action="loginForm";
             document.loginForm.submit();
         }
-
 
 
     </script>
