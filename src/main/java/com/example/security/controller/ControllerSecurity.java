@@ -33,6 +33,12 @@ public class ControllerSecurity  {
     public String login(){
         return "/SecurityLogin/login";
     }
+
+    @GetMapping("/loginlogin")
+    public String logins(){
+        return "/SecurityLogin/loginlogin";
+    }
+
     @GetMapping("/main")
     public String main(){
         return "/SecurityLogin/main";
@@ -57,8 +63,7 @@ public class ControllerSecurity  {
     @PostMapping("/joinForms")
     public String joinForms(UserVO vo){
         int result=securityService.join(vo);
-
-        return "redirect:/SecurityLogin/join";
+        return "redirect:/SecurityLogin/login";
     }
     //로그인 기능
     @PostMapping("/loginForm")

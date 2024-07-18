@@ -1,8 +1,10 @@
 package com.example.security.demoSecurity;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration //설정파일임
 @EnableWebSecurity //이 설정파일을 시큐리티 필터에 등록을 시킴
 public class SecurityConfig {
-
+    @Autowired
+    private MyUserDetailsService userDetailsService;
 
     //비밀번호 암호화(시큐러티가 제공해줌)
     @Bean
@@ -70,9 +73,13 @@ public class SecurityConfig {
 
 
         //시큐러티 기반의 플로그인을 사용한다.
-        http.formLogin();
-//                .loginPage("/SecurityLogin/login");//우리가 만들어 놓은 커스터마이징된 페이지 경로를 로그인 페이지로 사용함
-
+        http.formLogin()
+                .loginPage("/SecurityLogin/loginlogin") // 커스터마이징된 로그인 페이지 경로
+                .loginProcessingUrl("/SecurityLogin/loginForms") ;// 로그인 처리 URL
+//                .usernameParameter("yyy") // 사용자명 파라미터 이름 설정
+//                .passwordParameter("xxx"); //패스워드 파라미터 변경 시에 씋수있고
     return http.build();
     }
+
+
 }

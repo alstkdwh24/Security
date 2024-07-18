@@ -11,12 +11,14 @@
 <form action="joinForms" method="post">
     <input type="text" name="username" placeholder="아이디">
     <input type="password" name="password" placeholder="비밀번호">
-    <section name="role">
-        <option value="ROLE_USER">ROLE_USER</option>
-        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-        <option value="ROLE_TESTER">ROLE_TESTER</option>
-
-    </section>
+    <section>
+        <label>
+            <select  name="role">
+            <option value="ROLE_USER">ROLE_USER</option>
+            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+            <option value="ROLE_TESTER">ROLE_TESTER</option>
+    <select>
+        </label></section>
     <input type="submit" value="가입" id="join">
 </form>
 
