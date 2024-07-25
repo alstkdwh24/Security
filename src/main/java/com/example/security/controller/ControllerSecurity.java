@@ -38,7 +38,14 @@ public class ControllerSecurity {
     }
 
     @GetMapping("/loginlogin")
-    public String logins() {
+    public String logins(@RequestParam(value="err",required = false) String err,Model model) {
+
+        //failureURL을 들록하면, 다시 컨트롤러를 태워서 처리가 가능하다
+        if(err !=null){
+            model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
+        }
+
+
         return "/SecurityLogin/loginlogin";
     }
 
@@ -64,6 +71,14 @@ public class ControllerSecurity {
     @GetMapping("/admin/mypage")
     public @ResponseBody String admin() {
         return "REST 방식의 어드민페이지";
+    }
+    @GetMapping("/user/deny")
+    public @ResponseBody String deny() {
+        return "응 너 권한없어 수고";
+    }
+    @GetMapping("/user/good")
+    public String goodf() {
+        return "/SecurityLogin/user/good";
     }
 
     //회원가입가능
@@ -98,4 +113,7 @@ public class ControllerSecurity {
             }
 
     }
+
+
+
 }
